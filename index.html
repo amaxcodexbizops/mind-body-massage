@@ -317,8 +317,11 @@
 
   @media (max-width: 860px){
     .hero-grid, .about-grid{grid-template-columns:1fr;}
-    .hero{padding-top:160px; padding-bottom:60px;}
-    .hero-visual{order:-1; aspect-ratio:16/10; border-radius:18px;}
+    .hero{padding-bottom:60px;}
+    .hero-visual{order:-1; aspect-ratio:4/3; border-radius:18px;}
+    .hero-visual .badge-float{padding:12px 14px; gap:8px;}
+    .hero-visual .badge-float strong{font-size:0.9rem;}
+    .hero-visual .badge-float span{font-size:0.78rem;}
     .hero h1{font-size:clamp(2rem,7vw,2.8rem);}
     .hero p.lead{font-size:1rem;}
     .benefits-grid{grid-template-columns:1fr;}
@@ -628,8 +631,10 @@
   // push nav/hero down for fixed preview bar
   function adjustForBar(){
     var barH = barEl.offsetHeight;
-    document.querySelector('header').style.top = barH + 'px';
-    document.querySelector('.hero').style.paddingTop = (200 + barH) + 'px';
+    var headerEl = document.querySelector('header');
+    headerEl.style.top = barH + 'px';
+    var totalOffset = barH + headerEl.offsetHeight + 20;
+    document.querySelector('.hero').style.paddingTop = totalOffset + 'px';
   }
   window.addEventListener('load', adjustForBar);
   window.addEventListener('resize', adjustForBar);
